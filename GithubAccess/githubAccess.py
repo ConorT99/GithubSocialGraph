@@ -4,11 +4,11 @@ import json
 import requests
 
 # using username and password
-g = Github("2b5aca630caa6f0de36cd40f318a4c404845e307")
+g = Github("f1fa8afa56abeab676fd93490c39cccd56758d82")
 
-for repo in g.get_user().get_repos():
-    branch = repo.get_branch("master")
-    print(str(repo), "        ", str(branch.commit))
+#for repo in g.get_user().get_repos():
+#    branch = repo.get_branch("master")
+#    print(str(repo), "        ", str(branch.commit))
 
 
 #public_repos = requests.get('https://api.github.com/repositories').json()
@@ -24,5 +24,18 @@ java_repos = g.search_repositories(query='language:Java')
 count = 0
 for repo in java_repos:
     if count < 10:
-        print(repo.stargazers_count)
+        print(repo.stargazers_count, "      JAVA", str(repo))
         count += 1
+    else:
+        break
+
+print()
+
+python_repos = g.search_repositories(query='language:python')
+count = 0
+for repo in python_repos:
+    if count < 10:
+        print(repo.stargazers_count, "      PYTHON", str(repo))
+        count += 1
+    else:
+        break
