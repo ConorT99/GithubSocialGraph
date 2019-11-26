@@ -45,24 +45,6 @@ for repo in python_repos:
 
 # -- END GATHERING PYTHON INFORMATION -- #
 
-haskell_stars = []
-haskell_repo_names = []
-
-# -- GATHERING 10 MOST STARRED HASKELL REPOS -- #
-
-haskell_repos = g.search_repositories(query='language:haskell')
-count = 0
-for repo in haskell_repos:
-    if count < 10:
-        #print("HASKELL", repo.stargazers_count, str(repo))
-        haskell_stars.insert(count, repo.stargazers_count)
-        haskell_repo_names.insert(count, repo.name)
-        count += 1
-    else:
-        break
-
-# -- END GATHERING HASKELL INFORMATION
-
 prolog_stars = []
 prolog_repo_names = []
 
@@ -147,7 +129,7 @@ for repo in css_repos:
     if count < 10:
         #print("CSS", repo.stargazers_count, str(repo))
         css_stars.insert(count, repo.stargazers_count)
-        css_stars.insert(count, repo.name)
+        css_repo_names.insert(count, repo.name)
         count += 1
     else:
         break
@@ -163,7 +145,7 @@ js_repos = g.search_repositories(query='language:javascript')
 count = 0
 for repo in js_repos:
     if count < 10:
-        print("JAVASCRIPT", repo.stargazers_count, str(repo))
+        #print("JAVASCRIPT", repo.stargazers_count, str(repo))
         js_stars.insert(count, repo.stargazers_count)
         js_repo_names.insert(count, repo.name)
         count += 1
@@ -181,7 +163,7 @@ php_repos = g.search_repositories(query='language:php')
 count = 0
 for repo in php_repos:
     if count < 10:
-        print("PHP", repo.stargazers_count, str(repo))
+        #print("PHP", repo.stargazers_count, str(repo))
         php_stars.insert(count, repo.stargazers_count)
         php_repo_names.insert(count, repo.name)
         count += 1
@@ -228,3 +210,9 @@ esoteric_line.render_to_file('esoteric.svg')
 #       Languages referenced here are HTML, CSS, JavaScript, and PHP
 
 webdev_line = pygal.Line()
+webdev_line.title = 'Visualisation of the popularity of HTML, CSS, JavaScript, and PHP'
+webdev_line.add('HTML', html_stars)
+webdev_line.add('CSS', css_stars)
+webdev_line.add('JavaScript', js_stars)
+webdev_line.add('PHP', php_stars)
+webdev_line.render_to_file('webdev.svg')
