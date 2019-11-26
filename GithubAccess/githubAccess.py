@@ -217,7 +217,7 @@ smalltalk_repos = g.search_repositories(query='language:smalltalk')
 count = 0
 for repo in smalltalk_repos:
     if count < 10:
-        print("SMALLTALK", repo.stargazers_count, str(repo))
+        #print("SMALLTALK", repo.stargazers_count, str(repo))
         smalltalk_stars.insert(count, repo.stargazers_count)
         smalltalk_repo_names.insert(count, repo.name)
         count += 1
@@ -237,6 +237,37 @@ for i in range(0, len(python_stars)):
 
 #print(py_share_of_total)
 
+oldies_total_stars = 0
+fortran_share = 0
+cobol_share = 0
+lisp_share = 0
+smalltalk_share = 0
+
+for i in range(0, len(fortran_stars)):
+    oldies_total_stars += fortran_stars[i]
+    oldies_total_stars += cobol_stars[i]
+    oldies_total_stars += lisp_stars[i]
+    oldies_total_stars += smalltalk_stars[i]
+    fortran_share += fortran_stars[i]
+    cobol_share += cobol_stars[i]
+    lisp_share += lisp_stars[i]
+    smalltalk_share += smalltalk_stars[i]
+
+oldies_share_of_total = []
+oldies_share_of_total.insert(0, (fortran_share/oldies_total_stars) * 100)
+oldies_share_of_total.insert(1, (cobol_share/oldies_total_stars) * 100)
+oldies_share_of_total.insert(2, (lisp_share/oldies_total_stars) * 100)
+oldies_share_of_total.insert(3, (smalltalk_share/oldies_total_stars) * 100)
+
+oldies_names = []
+oldies_names.insert(0, "FORTRAN")
+oldies_names.insert(1, "COBOL")
+oldies_names.insert(2, "LISP")
+oldies_names.insert(3, "Smalltalk")
+
+# print(oldies_share_of_total)
+
+# print("Total old lang repos' stars: " + str(oldies_total_stars))
 
 # Creating a Bar Chart to represent data gathered on public Java repos
 java_bars = pygal.Bar()
@@ -274,3 +305,9 @@ webdev_line.render_to_file('webdev.svg')
 #       COBOL, FORTRAN, LISP, and Smalltalk
 
 golden_oldies = pygal.Pie()
+for i in range(0, len(oldies_names)):
+    golden_oldies.add(oldies_names[i], oldies_share_of_total[i])
+golden_oldies.render_to_file('goldenOldies.svg')
+
+
+# Thanks for coming to my TED Talk
