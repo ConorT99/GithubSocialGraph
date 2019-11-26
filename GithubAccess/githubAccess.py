@@ -172,6 +172,59 @@ for repo in php_repos:
 
 # -- END GATHERING PHP INFORMATION -- #
 
+fortran_stars = []
+fortran_repo_names = []
+
+# -- GATHERING 10 MOST STARRED FORTRAN REPOS -- #
+
+fortran_repos = g.search_repositories(query='language:fortran')
+count = 0
+for repo in fortran_repos:
+    if count < 10:
+        #print("FORTRAN", repo.stargazers_count, str(repo))
+        fortran_stars.insert(count, repo.stargazers_count)
+        fortran_repo_names.insert(count, repo.name)
+        count += 1
+    else:
+        break
+
+# -- END GATHERING FORTRAN INFROMATION -- #
+
+lisp_stars = []
+lisp_repo_names = []
+
+# -- GATHERING 10 MOST STARRED LISP REPOS -- #
+
+lisp_repos = g.search_repositories(query='language:lisp')
+count = 0
+for repo in lisp_repos:
+    if count < 10:
+        #print("LISP", repo.stargazers_count, str(repo))
+        lisp_stars.insert(count, repo.stargazers_count)
+        lisp_repo_names.insert(count, repo.name)
+        count += 1
+    else:
+        break
+
+# -- END GATHERING LISP INFORMATION -- #
+
+smalltalk_stars = []
+smalltalk_repo_names = []
+
+# -- GATHERING 10 MOST STARRED SMALLTALK REPOS -- #
+
+smalltalk_repos = g.search_repositories(query='language:smalltalk')
+count = 0
+for repo in smalltalk_repos:
+    if count < 10:
+        print("SMALLTALK", repo.stargazers_count, str(repo))
+        smalltalk_stars.insert(count, repo.stargazers_count)
+        smalltalk_repo_names.insert(count, repo.name)
+        count += 1
+    else:
+        break
+
+# -- END GATHERING SMALLTALK INFORMATION -- #
 
 pystars_total = 0
 for i in range(0, len(python_stars)):
@@ -216,3 +269,8 @@ webdev_line.add('CSS', css_stars)
 webdev_line.add('JavaScript', js_stars)
 webdev_line.add('PHP', php_stars)
 webdev_line.render_to_file('webdev.svg')
+
+# I am now going to create a Pie Chart to allow one to determine th erelative popularity of four older programming languages:
+#       COBOL, FORTRAN, LISP, and Smalltalk
+
+golden_oldies = pygal.Pie()
