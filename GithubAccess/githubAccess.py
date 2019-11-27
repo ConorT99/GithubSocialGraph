@@ -293,7 +293,7 @@ esoteric_line.render_to_file('esoteric.svg')
 # Creating a Line Graph to compare how many stars the 10 largest repos for four main programming languages java_repos
 #       Languages referenced here are HTML, CSS, JavaScript, and PHP
 
-webdev_line = pygal.Line()
+webdev_line = pygal.StackedLine(fill=True)
 webdev_line.title = 'Visualisation of the popularity of HTML, CSS, JavaScript, and PHP'
 webdev_line.add('HTML', html_stars)
 webdev_line.add('CSS', css_stars)
