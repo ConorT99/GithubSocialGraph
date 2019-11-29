@@ -308,6 +308,3 @@ golden_oldies = pygal.Pie()
 for i in range(0, len(oldies_names)):
     golden_oldies.add(oldies_names[i], oldies_share_of_total[i])
 golden_oldies.render_to_file('goldenOldies.svg')
-
-
-# Thanks for coming to my TED Talk
